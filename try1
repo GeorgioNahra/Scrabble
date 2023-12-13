@@ -1,1 +1,61 @@
-dssds
+#include <stdio.h>
+
+#define RANGER 15
+#define COLONNE 15
+
+
+typedef struct {
+   char letter;
+   int multiplier;
+} BoardCell;
+
+
+typedef struct {
+   BoardCell cells[RANGER][COLONNE];
+} GameBoard;
+
+
+void initializeGameBoard(GameBoard *board) {
+   for (int i = 0; i < RANGER; ++i) {
+       for (int j = 0; j < COLONNE; ++j) {
+           board->cells[i][j].letter = ' ';
+           board->cells[i][j].multiplier = 1;
+       }
+   }
+}
+
+
+void displayGameBoard(GameBoard *board) {
+   // Afficher les indices de colonnes (lettres A à O)
+   printf("    ");
+   for (char col = 'A'; col < 'A' + COLONNE; ++col) {
+       printf(" %c ", col);
+   }
+   printf("\n");
+
+
+   // Afficher le plateau de jeu avec les indices de lignes (1 à 15)
+   for (int i = 0; i < RANGER; ++i) {
+       printf("%2d |", i + 1);
+       for (int j = 0; j < COLONNE; ++j) {
+           printf("[%c]", board->cells[i][j].letter);
+       }
+       printf("\n");
+   }
+}
+
+
+int main() {
+   GameBoard board;
+
+
+   // Initialiser le plateau de jeu
+   initializeGameBoard(&board);
+
+
+   // Afficher le plateau de jeu avec les indices
+   displayGameBoard(&board);
+
+
+   return 0;
+}
