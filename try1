@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <stdlib.h>
+#include <time.h>
 #define RANGER 15
 #define COLONNE 15
 
@@ -44,10 +45,43 @@ void displayGameBoard(GameBoard *board) {
    }
 }
 
+typedef struct Joueur{
+char nom;
+int num;
+char chevalet;
+int score;
+
+}jou;
+
+void commancer(){
+struct Joueur jou;
+int nombreDeJoueur = 0;
+int rangeNum = 7;
+printf("Combien de joueur\n");
+scanf("%d", &nombreDeJoueur);
+if (nombreDeJoueur > 5 || nombreDeJoueur < 1){
+        do {
+    printf("Le nombre de jeouer est invalide, entrez un nouveux nombre\n");
+    scanf("%d", &nombreDeJoueur);
+} while (nombreDeJoueur > 5 || nombreDeJoueur < 1);}
+for (int i = 0; i < nombreDeJoueur; i++){
+    printf("Entrez le nom de Joueur\n");
+    scanf("%s", &jou.nom);
+    jou.num = rand()%rangeNum;
+    printf("Le numbre de joueur random c %d\n", jou.num);
+
+}
+
+
+}
 
 int main() {
    GameBoard board;
+    time_t t;
+    srand((unsigned)time(&t));
 
+
+    commancer();
 
    // Initialiser le plateau de jeu
    initializeGameBoard(&board);
@@ -59,3 +93,4 @@ int main() {
 
    return 0;
 }
+
